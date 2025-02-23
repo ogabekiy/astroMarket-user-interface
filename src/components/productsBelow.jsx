@@ -186,7 +186,6 @@ function LoadingState() {
   );
 }
 
-// Error holati uchun komponent
 function ErrorState() {
   return (
     <div className="text-center py-4 text-red-500">Error loading products</div>

@@ -44,7 +44,7 @@ export default function AuthForm() {
     try {
       const result = await login(loginData).unwrap(); // unwrap() gets the data or throws error
       localStorage.setItem("token", result.token); // Adjust based on your API response
-      localStorage.setItem("userData", JSON.stringify(result.user)); // Adjust key names
+      localStorage.setItem("userData", JSON.stringify(result.data)); // Adjust key names
       router.push("/");
     } catch (error) {
       setLoginError(error?.data?.message || "Login failed. Please try again.");
