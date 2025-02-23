@@ -1,13 +1,14 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useSearchProductQuery } from "@/redux/api/allApi";
+import { useAddProductToCartMutation, useLikeProductMutation, useSearchProductQuery } from "@/redux/api/allApi";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
 import ProductsBelow from "@/components/productsBelow";
+import Link from "next/link";
 
 export default function SearchPage() {
   const { title } = useParams();
@@ -16,6 +17,8 @@ export default function SearchPage() {
   if (isLoading) {
     return <div className="text-center text-lg">Yuklanmoqda...</div>;
   }
+
+
 
   return (
     <div className="container mx-auto">
@@ -31,6 +34,7 @@ export default function SearchPage() {
             transition={{ duration: 0.6, delay: index * 0.1 }}
           >
             <Card className="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition">
+              <Link href={`/products/${product.id}`}>
               <div className="relative w-full">
                 <Button
                   variant="ghost"
@@ -47,7 +51,7 @@ export default function SearchPage() {
                   transition={{ duration: 0.2 }}
                 >
                   <Image
-                    src={product.images?.[0] ? `${process.env.NEXT_PUBLIC_API_URL}/${product.images[0]}` : "/placeholder.svg"}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}/${product.images[0]}` }
                     alt={product.title || "Mahsulot"}
                     className="object-contain p-5 flex justify-center items-center"
                     fill
@@ -55,6 +59,7 @@ export default function SearchPage() {
                   />
                 </motion.div>
               </div>
+              </Link>
               <CardContent className="p-4 bg-white flex flex-col gap-2">
                 <h3 className="text-sm font-semibold text-gray-800 line-clamp-2">{product.title}</h3>
                 <div className="flex items-center gap-1 text-yellow-500">

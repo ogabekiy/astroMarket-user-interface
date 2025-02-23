@@ -18,12 +18,10 @@ export default function CategorySidebar() {
     return <div className="w-full bg-white py-3">Xatolik yuz berdi</div>;
   }
 
-  // http://localhost:3000/categories/filter/kiyimlar
   const { data: categoryProduct, refetch } = useGetAllProductsOfCategoryQuery("kiyimlar")
 
-// Qo'lda qayta yuklash uchun funksiya
 const getAllProductsOfCategory = () => {
-  refetch(); // API dan qayta ma'lumot olish
+  refetch(); 
 }
 console.log(data);
 
@@ -36,7 +34,6 @@ console.log(data);
 
   return (
     <div className="flex flex-col md:flex-row h-screen bg-gradient-to-r from-gray-100 to-gray-200 p-4">
-      {/* Sidebar */}
       <motion.div 
         initial={{ x: -100, opacity: 0 }} 
         animate={{ x: 0, opacity: 1 }} 
@@ -59,7 +56,6 @@ console.log(data);
         </ul>
       </motion.div>
 
-      {/* Product List */}
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 

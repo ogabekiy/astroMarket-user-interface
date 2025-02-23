@@ -4,11 +4,11 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart, ShoppingCart, Star } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton"; // Skeleton qo'shildi
+import { Skeleton } from "@/components/ui/skeleton"; 
 import Image from "next/image";
 import { useGetAllCategoriesQuery, useGetAllProductsOfCategoryQuery, useGetAllProductsQuery } from "@/redux/api/allApi";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion"; // Framer Motion qo'shildi
+import { motion, AnimatePresence } from "framer-motion"; 
 import ProductsBelow from "./productsBelow";
 
 export default function CategoriesPage() {
@@ -21,6 +21,8 @@ export default function CategoriesPage() {
   if (isCategoriesLoading || isCategoryLoading || isProductsLoading) {
     return <LoadingState />;
   }
+
+
 
   if (products.length === 0) {
     return (
@@ -100,10 +102,10 @@ export default function CategoriesPage() {
             return (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 50 }} // Pastdan chiqish
+                initial={{ opacity: 0, y: 50 }} 
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 50 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }} // Sekin chiqish va kechikish
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Card className="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition">
                   <div className="relative w-full">
@@ -121,13 +123,15 @@ export default function CategoriesPage() {
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Image
+                     <Link href={`/products/${product.id}`}>
+                     <Image
                         src={product.images?.[0] ? `${process.env.NEXT_PUBLIC_API_URL}/${product.images[0]}` : "/placeholder.svg"}
                         alt={product.title || "Mahsulot"}
                         className="object-contain p-5 flex justify-center items-center"
                         fill
                         unoptimized
                       />
+                     </Link>
                     </motion.div>
                   </div>
                   <CardContent className="p-4 bg-white flex flex-col gap-2">
@@ -156,25 +160,24 @@ export default function CategoriesPage() {
   );
 }
 
-// Loading holati uchun Skeleton bilan komponent
 function LoadingState() {
   return (
     <div className="container mx-auto p-4">
-      <Skeleton className="h-8 w-1/4 mb-4" /> {/* Sarlavha uchun */}
+      <Skeleton className="h-8 w-1/4 mb-4" /> 
       <div className="flex gap-2 overflow-auto pb-4">
         {Array(5).fill(0).map((_, index) => (
-          <Skeleton key={index} className="h-10 w-24" /> // Kategoriya tugmalari uchun
+          <Skeleton key={index} className="h-10 w-24" /> 
         ))}
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
         {Array(8).fill(0).map((_, index) => (
           <div key={index} className="overflow-hidden rounded-lg">
-            <Skeleton className="h-40 w-full" /> {/* Rasm uchun */}
+            <Skeleton className="h-40 w-full" /> 
             <div className="p-4 bg-white space-y-2">
-              <Skeleton className="h-4 w-3/4" /> {/* Sarlavha uchun */}
-              <Skeleton className="h-4 w-1/2" /> {/* Reyting uchun */}
-              <Skeleton className="h-4 w-1/3" /> {/* Narx uchun */}
-              <Skeleton className="h-8 w-full" /> {/* Tugma uchun */}
+              <Skeleton className="h-4 w-3/4" />
+              <Skeleton className="h-4 w-1/2" /> 
+              <Skeleton className="h-4 w-1/3" /> 
+              <Skeleton className="h-8 w-full" /> 
             </div>
           </div>
         ))}

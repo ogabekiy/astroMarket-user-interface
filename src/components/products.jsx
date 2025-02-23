@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, Heart, ShoppingCart, Star } from "lucide-rea
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton" // Skeleton qo'shildi
+import { Skeleton } from "@/components/ui/skeleton"
 import { useAddProductToCartMutation, useGetAllProductsQuery, useLikeProductMutation } from "@/redux/api/allApi"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
@@ -100,7 +100,7 @@ export default function ProductSlider() {
                         transition={{ duration: 0.2 }}
                       >
                         <Image
-                          src={product.images?.[0] ? `http://localhost:3000/${product.images[0]}` : "/placeholder.svg"}
+                           src={`${process.env.NEXT_PUBLIC_API_URL}/${product.images[0]}` }
                           alt={product.title || "Mahsulot"}
                           className="object-contain p-5"
                           fill
@@ -164,7 +164,6 @@ export default function ProductSlider() {
   )
 }
 
-// Loading holati uchun Skeleton bilan komponent
 function LoadingState() {
   return (
     <div className="w-full px-4 py-6">
@@ -191,7 +190,6 @@ function LoadingState() {
   )
 }
 
-// Error holati uchun komponent
 function ErrorState() {
   return (
     <div className="w-full px-4 py-6">

@@ -5,9 +5,10 @@ import { ChevronLeft, ChevronRight, Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton"; // Skeleton qo'shildi
+import { Skeleton } from "@/components/ui/skeleton"; 
 import { useGetAllProductsQuery, useAddProductToCartMutation, useLikeProductMutation } from "@/redux/api/allApi";
-import { motion, AnimatePresence } from "framer-motion"; // Framer Motion qo'shildi
+import { motion, AnimatePresence } from "framer-motion"; 
+import Link from "next/link";
 
 export default function ProductsBelow() {
   const scrollContainerRef = useRef(null);
@@ -76,10 +77,10 @@ export default function ProductsBelow() {
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 50 }} // Pastdan chiqish
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 50 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }} // Sekin chiqish va kechikish
+                transition={{ duration: 0.6, delay: index * 0.1 }} 
               >
                 <Card
                   className="min-w-[150px] md:min-w-[200px] max-w-[150px] md:max-w-[200px] overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex-shrink-0"
@@ -100,13 +101,15 @@ export default function ProductsBelow() {
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Image
-                        src={product.images?.[0] ? `http://localhost:3000/${product.images[0]}` : "/placeholder.svg"}
+                     <Link  href={`/products/${product.id}`}>
+                     <Image
+                         src={`${process.env.NEXT_PUBLIC_API_URL}/${product.images[0]}` }
                         alt={product.title || "Mahsulot"}
                         className="object-contain p-5 flex justify-center items-center"
                         fill
                         unoptimized
                       />
+                     </Link>
                     </motion.div>
                   </div>
                   <div className="p-2 md:p-3 bg-white rounded-b-lg flex flex-col gap-1">
@@ -159,7 +162,6 @@ export default function ProductsBelow() {
   );
 }
 
-// Loading holati uchun Skeleton komponenti
 function LoadingState() {
   return (
     <div className="w-full px-2 py-4 md:px-4 md:py-6">

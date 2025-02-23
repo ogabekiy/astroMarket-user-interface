@@ -1,7 +1,6 @@
 import BannerCarousel, { CarouselDemo } from '@/components/banner'
 import FeatureCards from '@/components/featureCards'
 import Footer from '@/components/footer'
-import Products from '@/components/justProducts'
 import CategoryNav from '@/components/navCategory'
 import ProductSlider from '@/components/products'
 import ProductsBelow from '@/components/productsBelow'

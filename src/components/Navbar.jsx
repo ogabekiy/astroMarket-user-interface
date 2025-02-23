@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // Added search state
+  const [searchQuery, setSearchQuery] = useState(""); 
   const router = useRouter();
 
   const handleLogout = () => {
@@ -18,13 +18,12 @@ const Navbar = () => {
     router.push("/profile");
   };
 
-  // Handle search submission
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/search/${encodeURIComponent(searchQuery.trim())}`);
-      setSearchQuery(""); // Clear input after search
-      setIsOpen(false); // Close mobile menu if open
+      setSearchQuery(""); 
+      setIsOpen(false); 
     }
   };
 
@@ -50,7 +49,6 @@ const Navbar = () => {
               ))}
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              {/* Desktop Search Form */}
               <form onSubmit={handleSearch} className="relative">
                 <Input
                   type="text"
@@ -73,7 +71,6 @@ const Navbar = () => {
                 <Link href="/cartProducts"><ShoppingCart className="h-5 w-5" /></Link>
               </Button>
 
-              {/* User Menu (Profile & Logout) */}
               <div className="relative">
                 <Button
                   variant="ghost"
@@ -109,11 +106,9 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu */}
           {isOpen && (
             <div className="md:hidden bg-white shadow-lg p-4">
               <div className="flex flex-col space-y-4">
-                {/* Mobile Search Form */}
                 <form onSubmit={handleSearch} className="relative">
                   <Input
                     type="text"
@@ -130,7 +125,6 @@ const Navbar = () => {
                   </button>
                 </form>
 
-                {/* Navigation links */}
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -142,7 +136,6 @@ const Navbar = () => {
                   </Link>
                 ))}
 
-                {/* User & Logout */}
                 <div className="flex flex-col space-y-2">
                   <Link
                     href="/profile"
@@ -196,8 +189,6 @@ const Logo = () => (
 const navLinks = [
   { href: "/categories", label: "Categories" },
   { href: "/orders", label: "Orders" },
-  { href: "/newProducts", label: "New Products" },
-  { href: "/discounts", label: "Discounts" },
 ];
 
 export default Navbar;

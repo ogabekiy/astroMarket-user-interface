@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react"
+import Link from "next/link"
 
 const Footer = () => {
   return (
@@ -25,17 +26,17 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Tezkor Havolalar</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="hover:text-yellow-300 transition-colors">
+                <Link href="/categories" className="hover:text-yellow-300 transition-colors">
                   Mahsulotlar
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-yellow-300 transition-colors">
+                <a href="/" className="hover:text-yellow-300 transition-colors">
                   Aksiyalar
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-yellow-300 transition-colors">
+                <a href="/categories" className="hover:text-yellow-300 transition-colors">
                   Yetkazib berish
                 </a>
               </li>
@@ -47,19 +48,19 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center">
                 <Mail size={16} className="mr-2" />
-                <a href="mailto:info@bizningdokon.uz" className="hover:text-yellow-300 transition-colors">
-                  info@bizningdokon.uz
+                <a href="ogbkiy@gmail.com" className="hover:text-yellow-300 transition-colors">
+                  ogbkiy@gmail.com
                 </a>
               </li>
               <li className="flex items-center">
                 <Phone size={16} className="mr-2" />
                 <a href="tel:+998901234567" className="hover:text-yellow-300 transition-colors">
-                  +998 90 123 45 67
+                  +998 90 567 07 33
                 </a>
               </li>
               <li className="flex items-center">
                 <MapPin size={16} className="mr-2" />
-                <span>Toshkent sh., Amir Temur ko'chasi, 1</span>
+                <span>Fargona sh., Bolajon ko'chasi, 1</span>
               </li>
             </ul>
           </div>

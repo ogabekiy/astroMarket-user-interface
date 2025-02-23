@@ -6,13 +6,13 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useRouter } from "next/navigation";
-import { Apple, Chrome as Google } from "lucide-react"; // Fixed ChromeIcon to Chrome
+import { Apple, Chrome as Google } from "lucide-react"; 
 import { useLoginMutation, useRegisterMutation } from "@/redux/api/allApi";
 
 export default function AuthForm() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState("login"); // Control active tab
-  const [loginError, setLoginError] = useState(""); // For error feedback
+  const [activeTab, setActiveTab] = useState("login"); 
+  const [loginError, setLoginError] = useState(""); 
   const [registerError, setRegisterError] = useState("");
 
   const [loginData, setLoginData] = useState({
@@ -35,16 +35,16 @@ export default function AuthForm() {
 
   const formatPhone = (value) => {
     const numbers = value.replace(/\D/g, "");
-    return numbers.slice(0, 9); // Limit to 9 digits
+    return numbers.slice(0, 9);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoginError(""); // Reset error
+    setLoginError(""); 
     try {
-      const result = await login(loginData).unwrap(); // unwrap() gets the data or throws error
-      localStorage.setItem("token", result.token); // Adjust based on your API response
-      localStorage.setItem("userData", JSON.stringify(result.data)); // Adjust key names
+      const result = await login(loginData).unwrap(); 
+      localStorage.setItem("token", result.token); 
+      localStorage.setItem("userData", JSON.stringify(result.data)); 
       router.push("/");
     } catch (error) {
       setLoginError(error?.data?.message || "Login failed. Please try again.");
@@ -53,12 +53,12 @@ export default function AuthForm() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setRegisterError(""); // Reset error
+    setRegisterError(""); 
     try {
       console.log(registerData);
       
       await register(registerData).unwrap();
-      setActiveTab("login"); // Switch to login tab on success
+      setActiveTab("login"); 
     } catch (error) {
       setRegisterError(error?.data?.message || "Registration failed. Please try again.");
     }
@@ -106,7 +106,6 @@ export default function AuthForm() {
               Forgot Password?
             </Button>
 
-            {/* Social Media Login (Placeholder) */}
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t" />

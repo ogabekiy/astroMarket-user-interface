@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -41,7 +40,7 @@ function CartItem({ item, onIncrease, onDecrease, isAddLoading, isDecreaseLoadin
               <Link href={`/products/${product.id}`} className="flex items-center">
                 <div className="relative flex w-12 h-12 flex-shrink-0">
                   <Image
-                    src={product?.images?.[0] ? `http://localhost:3000/${product.images[0]}` : "/placeholder.svg"}
+                     src={`${process.env.NEXT_PUBLIC_API_URL}/${product.images[0]}` }
                     alt={product?.title || "Product"}
                     fill
                     className="object-contain rounded-md"
@@ -252,7 +251,6 @@ export default function CartPage() {
         </CardContent>
       </Card>
 
-      {/* Custom Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-lg shadow-lg w-full max-w-md overflow-hidden">

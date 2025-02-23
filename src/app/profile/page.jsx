@@ -7,9 +7,8 @@ export default function Page() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
-    // Check if token exists in localStorage when component mounts
     const token = localStorage.getItem('token')
-    setIsAuthenticated(!!token) // Convert to boolean - true if token exists, false if not
+    setIsAuthenticated(!!token) 
   }, [])
 
   return (

@@ -45,7 +45,6 @@ export default function OrdersPage() {
   const [showPaymentAlert, setShowPaymentAlert] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
-  // Sort orders by date (newest first)
   const orders = ordersData ? [...ordersData].sort((a, b) => 
     new Date(b.createdAt) - new Date(a.createdAt)
   ) : [];
@@ -260,11 +259,7 @@ export default function OrdersPage() {
                         <div key={item.id} className="flex items-center gap-3">
                           <div className="relative w-12 h-12 rounded-lg overflow-hidden border border-gray-200">
                             <Image
-                              src={
-                                item.product?.images?.[0]
-                                  ? `${process.env.NEXT_PUBLIC_API_URL}/${item.product.images[0]}`
-                                  : "/placeholder.svg"
-                              }
+                               src={`${process.env.NEXT_PUBLIC_API_URL}/${item.product.images[0]}` }
                               alt={item.product?.title || "Product"}
                               fill
                               className="object-cover"

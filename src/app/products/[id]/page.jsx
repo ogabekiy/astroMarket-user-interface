@@ -10,7 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Heart, ShoppingCart, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion"; // Framer Motion qo'shildi
+import { motion } from "framer-motion"; 
 import ProductsBelow from "@/components/productsBelow";
 
 export default function ProductPage() {
@@ -19,7 +19,7 @@ export default function ProductPage() {
   const { data: product, isLoading, error } = useGetOneProductQuery(id);
 
   const [isLiked, setIsLiked] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0); // Rasmlar slayderi uchun holat
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const [addToCart, { isLoading: cartLoading }] = useAddProductToCartMutation();
   const [likeProduct] = useLikeProductMutation();
@@ -43,7 +43,6 @@ export default function ProductPage() {
     }
   };
 
-  // Rasmlar slayderi uchun navigatsiya
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) => (prev === 0 ? (product?.images?.length || 1) - 1 : prev - 1));
   };
@@ -98,7 +97,7 @@ export default function ProductPage() {
             <Image
               src={
                 product.images?.[currentImageIndex]
-                  ? `http://localhost:3000/${product.images[currentImageIndex]}`
+                  ? `${process.env.NEXT_PUBLIC_API_URL}/${product.images[currentImageIndex]}`
                   : "/placeholder.svg"
               }
               alt={product.title || "Mahsulot"}
@@ -108,7 +107,6 @@ export default function ProductPage() {
             />
           </motion.div>
 
-          {/* Slayder tugmalari */}
           {product.images?.length > 1 && (
             <>
               <Button
@@ -130,7 +128,6 @@ export default function ProductPage() {
             </>
           )}
 
-          {/* Kichik rasmlar galereyasi */}
           {product.images?.length > 1 && (
             <div className="flex gap-2 mt-2 justify-center">
               {product.images.map((img, index) => (
@@ -143,7 +140,7 @@ export default function ProductPage() {
                   onClick={() => setCurrentImageIndex(index)}
                 >
                   <Image
-                    src={`http://localhost:3000/${img}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}/${img}` }
                     alt={`Thumbnail ${index}`}
                     className="object-cover"
                     fill

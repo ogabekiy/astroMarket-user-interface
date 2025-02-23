@@ -107,11 +107,7 @@ export default function LikedProductsPage() {
                       <Link href={`/products/${like.product_id}`} className="flex items-center">
                         <div className="relative w-12 h-12 flex-shrink-0">
                           <Image
-                            src={
-                              like.product?.images?.[0]
-                                ? `http://localhost:3000/${like.product.images[0]}`
-                                : "/placeholder.svg"
-                            }
+                             src={`${process.env.NEXT_PUBLIC_API_URL}/${like.product.images[0]}` }
                             alt={like.product?.title || "Product"}
                             fill
                             className="object-contain rounded-md"
