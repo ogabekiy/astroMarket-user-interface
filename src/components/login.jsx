@@ -43,6 +43,12 @@ export default function AuthForm() {
     setLoginError(""); 
     try {
       const result = await login(loginData).unwrap(); 
+      // console.log(result);
+      
+      if (result.data.role !== "user") {
+        alert("Nice try, diddy! 👀");
+        return;
+      }
       localStorage.setItem("token", result.token); 
       localStorage.setItem("userData", JSON.stringify(result.data)); 
       router.push("/");
