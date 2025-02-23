@@ -88,7 +88,7 @@ export default function ProductPage() {
       <div className="grid md:grid-cols-2 gap-8">
         <Card className="overflow-hidden relative">
           <motion.div
-            key={currentImageIndex} // Har bir rasm o'zgarishida animatsiya qo'llaniladi
+            key={currentImageIndex}
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}

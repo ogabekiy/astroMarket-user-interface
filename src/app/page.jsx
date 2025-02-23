@@ -22,7 +22,6 @@ export default function page() {
      <Link href={"/categories"}>
      <div className=''><Image className='flex rounded-lg justify-center mx-auto transition-transform duration-300 ease-in-out hover:scale-[101%]' src={Ramazon} alt='xa'/></div>
      </Link>
-
      <div><ProductSlider/></div>
      <div><ProductsBelow/></div>
      {/* <div><Products/></div> */}
